@@ -1,0 +1,15 @@
+PlayChannel to play {Channel}
+PlayChannel to start {Channel}
+CurrentlyPlaying what song is this
+CurrentlyPlaying what song this is
+CurrentlyPlaying what is playing
+CurrentlyPlaying what's playing
+CurrentlyPlaying who is this
+PopularChannels what's hot
+PopularChannels what is hot
+PopularChannels what's popular
+PopularChannels what is popular
+PopularChannels what are the hot channels
+PopularChannels what are the hot stations
+PopularChannels what are the popular channels
+PopularChannels what are the popular stations

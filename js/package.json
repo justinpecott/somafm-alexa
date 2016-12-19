@@ -1,0 +1,24 @@
+{
+  "name": "alexa-skill-somafm",
+  "version": "1.0.0",
+  "description": "Over 30 unique channels of listener-supported, commercial-free, underground/alternative radio broadcasting to the world. All music hand-picked by SomaFM's award-winning DJs and music directors.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "alexa",
+    "skill",
+    "audio player",
+    "soma fm"
+  ],
+  "author": "Justin Pecott",
+  "license": "MIT",
+  "dependencies": {
+    "alexa-sdk": "^1.0.4"
+  },
+  "repository" : {
+    "type" : "git",
+    "url" : "https://github.com/justinpecott/somafm-alexa"
+  }
+}
