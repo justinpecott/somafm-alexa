@@ -3,6 +3,7 @@ PlayChannel to start {Channel}
 CurrentlyPlaying what song is this
 CurrentlyPlaying what song this is
 CurrentlyPlaying what is playing
+CurrentlyPlaying what song is playing
 CurrentlyPlaying what's playing
 CurrentlyPlaying who is this
 PopularChannels what's hot
