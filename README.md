@@ -20,12 +20,12 @@ We'll jot that down on a card so you can come back to it later if you like.
 ![Thao & Mirah](img/screenshot-song.jpg "Thao & Mirah")
 
 ### Tell You What the Most Popular Stations Are
-_**Alexa ask Soma FM what's popular?**_ - Responds the most popular channels -> _"TThe most popular stations ranked by current listeners are Groove Salad, Drone Zone, and Space Station Soma"_
+_**Alexa ask Soma FM what's popular?**_ - Responds the most popular channels -> _"The most popular stations ranked by current listeners are Groove Salad, Drone Zone, and Space Station Soma"_
 
 I mean, outside of the holidays, that's usually the three you'll hear in my experience but it's nice for someone new to Soma FM.
 
 ## Things to be Aware of
-- The station list is currently hard coded so if a new one launches a code change will be required. Maybe I'll get access to the real API and rectify this in the future.
+- The channel list is currently hard coded so if a new one launches a code change will be required. Maybe I'll get access to the real API and rectify this in the future.
 - Alexa hears _"SF 10-33"_ as _"SF 10 to 33"_. I haven't figured out a way to allow other phrasing (hyphen, dash) without bad things happening. I did put an additional phrase in there so you can call it with _"SF Scanner"_.
 
 ## How Do I Build It?
