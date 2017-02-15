@@ -13,7 +13,7 @@ After the channel starts you'll see the following card in the Alexa app.
 ![Indie Pop Rocks](img/screenshot-channel.jpg "Indie pop Rocks")
 
 ### Tell You What Song is Currently Playing
-_**Alexa ask Soma FM what song is playing?**_ - Responds the song title and artist of the currently playing song -> _"This is How Dare You by Thao & Mirah"_
+_**Alexa ask Soma FM what song is playing?**_ - Responds with the song title and artist of the currently playing song -> _"This is How Dare You by Thao & Mirah"_
 
 We'll jot that down on a card so you can come back to it later if you like.
 
