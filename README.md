@@ -1,5 +1,8 @@
 # Soma FM for Alexa
-Play Soma FM channels on Alexa! Over 30 unique channels of listener-supported, commercial-free, underground/alternative radio broadcasting to the world. All music hand-picked by SomaFM's award-winning DJs and music directors.
+Play [Soma FM](https://somafm.com) channels on Alexa! Over 30 unique channels of listener-supported, commercial-free, underground/alternative radio broadcasting to the world. All music hand-picked by SomaFM's award-winning DJs and music directors.
+
+### Listener Supported
+If you enjoy what you're hearing on Soma FM please _**[support them](https://somafm.com/support/)**_!
 
 ## Motivation
 I love Soma FM and while channels are available with Alexa via TuneIn they're not always easy to dig out. It seemed to me that the easiest way to reliably summon BAGeL Radio and Lush to my Echo was to create a Soma FM specific skill. Additionally I wanted to try cutting my teeth on Alexa Skill development. Two birds with one stone! This skill is not (yet) published so to use it you will have to have a developer account with Amazon and be somewhat comfortable deploying a new skill to Lambda. A nice getting started guide is [here](https://developer.amazon.com/blogs/post/Tx3DVGG0K0TPUGQ/New-Alexa-Skills-Kit-Template:-Step-by-Step-Guide-to-Build-a-Fact-Skill).
