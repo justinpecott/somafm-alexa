@@ -39,6 +39,8 @@ var somafm = function () {
 
                     // play behavior, url, token, expected previous token, offset in millis
                     this.response.audioPlayerPlay('REPLACE_ALL', channel['url'], token, null, 0);
+                    var message = 'You\'re listening to ' + channel['title'] + ' on Soma FM';
+                    this.response.speak(message);
                     this.emit(':responseReady');
                 }
 
@@ -80,11 +82,20 @@ var somafm = function () {
                         return channel['id'] === listeningChannel['id'];
                     });
 
+                    // Make the song spoken more natural if we get a clean split
+                    // Normal format is 'Artist - Song'
+                    var lastPlaying = apiListeningChannel['lastPlaying'].split(' - ', 2);
+                    var currentPlay = lastPlaying.length === 2 ? lastPlaying[1] + ' by ' + lastPlaying[0] : apiListeningChannel['lastPlaying'];
+
                     // Find the last playing song
-                    var message = 'This is ' + apiListeningChannel['lastPlaying'];
+                    //
+                    // Replace the & or an invalid ssml output will occur.
+                    // There's probably other characters we should be looking for
+                    // but I think this will cover 99% of occurrences
+                    var message = 'This is ' + currentPlay.replace(/&/g, '&amp;');
                     var cardTitle = "Currently Playing on " + listeningChannel['title'];
                     console.log("SOMA FM SONG LOOKUP : " + message);
-                    requestHandler.response.cardRenderer(cardTitle, apiListeningChannel['lastPlaying']);
+                    requestHandler.response.cardRenderer(cardTitle, currentPlay);
                     requestHandler.response.speak(message);
                     requestHandler.emit(':responseReady');
                 });
@@ -142,7 +153,8 @@ var somafm = function () {
             this.emit(':responseReady');
         },
         welcome: function () {
-            this.response.speak('Welcome to Soma FM. You can say, play Indie Pop Rocks; or any other channel to begin.');
+            var message = 'Welcome to Soma FM. You can say, play Indie Pop Rocks; or any other channel to begin.';
+            this.response.speak(message).listen(message);
             this.emit(':responseReady');
         },
         help: function () {
