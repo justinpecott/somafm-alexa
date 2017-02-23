@@ -13,14 +13,14 @@ After the channel starts you'll see the following card in the Alexa app.
 ![Indie Pop Rocks](img/screenshot-channel.jpg "Indie pop Rocks")
 
 ### Tell You What Song is Currently Playing
-_**Alexa ask Soma FM what song is playing?**_ - Responds with the song title and artist of the currently playing song -> _"This is How Dare You by Thao & Mirah"_
+_**Alexa ask Soma FM what song is playing**_ - Responds with the song title and artist of the currently playing song -> _"This is How Dare You by Thao & Mirah"_
 
 We'll jot that down on a card so you can come back to it later if you like.
 
 ![Thao & Mirah](img/screenshot-song.jpg "Thao & Mirah")
 
 ### Tell You What the Most Popular Stations Are
-_**Alexa ask Soma FM what's popular?**_ - Responds the most popular channels -> _"The most popular stations ranked by current listeners are Groove Salad, Drone Zone, and Space Station Soma"_
+_**Alexa ask Soma FM what's popular**_ - Responds the most popular channels -> _"The most popular stations ranked by current listeners are Groove Salad, Drone Zone, and Space Station Soma"_
 
 I mean, outside of the holidays, that's usually the three you'll hear in my experience but it's nice for someone new to Soma FM.
 
