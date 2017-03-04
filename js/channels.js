@@ -235,36 +235,18 @@ var somafmChannels = {
         "image"         : "https://api.somafm.com/logos/512/seventies512.jpg",
         "url"           : "https://somafm.com/seventies.pls"
     },
-    "sf 10 dash 33"          : {
+    "sf 1033"          : {
         "id"            : "sf1033",
-        "title"         : "SF 10-33",
+        "title"         : "SF 10 33",
         "description"   : "Ambient music mixed with the sounds of San Francisco public safety radio traffic.",
         "dj"            : "Rusty Hodge",
         "genre"         : "ambient|news",
         "image"         : "https://api.somafm.com/logos/512/sf1033512.png",
         "url"           : "https://somafm.com/sf1033.pls"
     },
-    "sf 10 hyphen 33"          : {
+    "sf 10 33"          : {
         "id"            : "sf1033",
-        "title"         : "SF 10-33",
-        "description"   : "Ambient music mixed with the sounds of San Francisco public safety radio traffic.",
-        "dj"            : "Rusty Hodge",
-        "genre"         : "ambient|news",
-        "image"         : "https://api.somafm.com/logos/512/sf1033512.png",
-        "url"           : "https://somafm.com/sf1033.pls"
-    },
-    "sf 10-33"          : {
-        "id"            : "sf1033",
-        "title"         : "SF 10-33",
-        "description"   : "Ambient music mixed with the sounds of San Francisco public safety radio traffic.",
-        "dj"            : "Rusty Hodge",
-        "genre"         : "ambient|news",
-        "image"         : "https://api.somafm.com/logos/512/sf1033512.png",
-        "url"           : "https://somafm.com/sf1033.pls"
-    },
-    "sf scanner"          : {
-        "id"            : "sf1033",
-        "title"         : "SF 10-33",
+        "title"         : "SF 10 33",
         "description"   : "Ambient music mixed with the sounds of San Francisco public safety radio traffic.",
         "dj"            : "Rusty Hodge",
         "genre"         : "ambient|news",
