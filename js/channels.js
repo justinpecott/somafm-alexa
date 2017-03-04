@@ -361,6 +361,15 @@ var somafmChannels = {
         "image"         : "https://api.somafm.com/logos/512/metal512.png",
         "url"           : "https://somafm.com/metal.pls"
     },
+    "south by soma"     : {
+		"id"            : "sxfm",
+		"title"         : "South by Soma",
+		"description"   : "Music from bands who will be performing at SXSW, one of the biggest and best music festivals in the world.",
+		"dj"            : "Bagel Ted",
+		"genre"         : "alternative",
+		"image"         : "https://api.somafm.com/logos/512/sxfm512.png",
+		"url"           : "https://somafm.com/sxfm.pls"
+	},
 };
 
 module.exports = somafmChannels;
