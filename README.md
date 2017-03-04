@@ -25,8 +25,8 @@ _**Alexa ask Soma FM what's popular**_ - Responds the most popular channels -> _
 I mean, outside of the holidays, that's usually the three you'll hear in my experience but it's nice for someone new to Soma FM.
 
 ## Things to be Aware of
-- The channel list is currently hard coded so if a new one launches a code change will be required. Maybe I'll get access to the real API and rectify this in the future.
-- Alexa hears _"SF 10-33"_ as _"SF 10 to 33"_. I haven't figured out a way to allow other phrasing (hyphen, dash) without bad things happening. I did put an additional phrase in there so you can call it with _"SF Scanner"_.
+- The channel list is currently hard coded so if a new one launches a code change will be required. Tough not to with custom slot types. Maybe I'll figure out a way rectify this in the future.
+- Alexa hears _"SF 10-33"_ as _"SF 10 33"_ aka _"SF Ten Thirty Three_.
 
 ## How Do I Build It?
 It may be helpful to walk through the [audio player example](https://github.com/alexa/skill-sample-nodejs-audio-player) to make sure you have everything set up correctly. That said, here is the short version.
@@ -34,6 +34,6 @@ It may be helpful to walk through the [audio player example](https://github.com/
 ```shell
 cd js
 npm build
-zip -r ../soma.zip
+zip -r ../soma.zip .
 ```
 Then just upload it to Lambda.
