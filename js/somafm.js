@@ -3,7 +3,7 @@
 var constants = require('./constants');
 var channels = require('./channels');
 var https = require('https');
-var apiUrl = 'https://somafm.com/channels.json';
+var apiUrl = 'https://somafm.com/channels.json?alexa';
 
 var somafm = function () {
     return {
