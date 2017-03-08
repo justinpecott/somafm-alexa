@@ -33,7 +33,7 @@ It may be helpful to walk through the [audio player example](https://github.com/
 
 ```shell
 cd js
-npm build
+npm install
 zip -r ../soma.zip .
 ```
 Then just upload it to Lambda.
