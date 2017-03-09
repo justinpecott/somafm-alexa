@@ -10,12 +10,19 @@ var somafm = function () {
         play: function () {
             this.handler.state = constants.states.PLAY_MODE;
 
-            // Make sure we have a channel
+            // See what we were playing before
+            var token = this.attributes['token'];
+            console.log("SOMA FM CURRENT TOKEN: " + token);
+            // If we asked for something different override what was playing before
             var intent = this.event.request.intent;
-            var hasChannel = intent && intent.slots && intent.slots.Channel && intent.slots.Channel.value;
-            if (hasChannel) {
+            if (intent && intent.slots && intent.slots.Channel && intent.slots.Channel.value) {
+                token = intent.slots.Channel.value.toLowerCase();
+                console.log("SOMA FM UPDATED TOKEN: " + token);
+            }
+
+            // Make sure we have something to play
+            if (token) {
                 // Save the channel as our token, downcased for easier lookup
-                var token = intent.slots.Channel.value.toLowerCase();
                 this.attributes['token'] = token;
                 console.log("SOMA FM CHANNEL: " + token);
 
