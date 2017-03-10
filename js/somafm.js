@@ -100,7 +100,7 @@ var somafm = function () {
                         // Replace the & or an invalid ssml output will occur.
                         // There's probably other characters we should be looking for
                         // but I think this will cover 99% of occurrences
-                        var message = 'This is ' + currentPlay.replace(/&/g, '&amp;');
+                        var message = 'Currently Playing on ' + listeningChannel['title'] + ',' + currentPlay.replace(/&/g, '&amp;');
                         var cardTitle = "Currently Playing on " + listeningChannel['title'];
                         console.log("SOMA FM SONG LOOKUP : " + message);
                         requestHandler.response.cardRenderer(cardTitle, currentPlay);
