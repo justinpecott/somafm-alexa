@@ -67,50 +67,56 @@ var somafm = function () {
             // Hold on to a reference to 'this' for the https callback
             var requestHandler = this;
 
-            https.get(apiUrl, function(res) {
-                var body = '';
+            if (requestHandler.event.context.AudioPlayer.token) {
+                https.get(apiUrl, function(res) {
+                    var body = '';
 
-                res.on('data', function (chunk) {
-                    body += chunk;
-                });
-
-                res.on('end', function () {
-                    var apiResponse = JSON.parse(body);
-                    var currentApiChannels = apiResponse['channels'];
-
-                    // The names we're using to identify the stations are not
-                    // the same due to how Alexa is hearing thigs. Need to get
-                    // the id from our channel list and look it up in the
-                    // returned list
-                    var listeningChannelName = requestHandler.event.context.AudioPlayer.token;
-                    var listeningChannel = channels[listeningChannelName];
-
-                    var apiListeningChannel = currentApiChannels.find(function(channel) {
-                        return channel['id'] === listeningChannel['id'];
+                    res.on('data', function (chunk) {
+                        body += chunk;
                     });
 
-                    // Make the song spoken more natural if we get a clean split
-                    // Normal format is 'Artist - Song'
-                    var lastPlaying = apiListeningChannel['lastPlaying'].split(' - ', 2);
-                    var currentPlay = lastPlaying.length === 2 ? lastPlaying[1] + ' by ' + lastPlaying[0] : apiListeningChannel['lastPlaying'];
+                    res.on('end', function () {
+                        var apiResponse = JSON.parse(body);
+                        var currentApiChannels = apiResponse['channels'];
 
-                    // Find the last playing song
-                    //
-                    // Replace the & or an invalid ssml output will occur.
-                    // There's probably other characters we should be looking for
-                    // but I think this will cover 99% of occurrences
-                    var message = 'This is ' + currentPlay.replace(/&/g, '&amp;');
-                    var cardTitle = "Currently Playing on " + listeningChannel['title'];
-                    console.log("SOMA FM SONG LOOKUP : " + message);
-                    requestHandler.response.cardRenderer(cardTitle, currentPlay);
-                    requestHandler.response.speak(message);
+                        // The names we're using to identify the stations are not
+                        // the same due to how Alexa is hearing thigs. Need to get
+                        // the id from our channel list and look it up in the
+                        // returned list
+                        var listeningChannelName = requestHandler.event.context.AudioPlayer.token;
+                        var listeningChannel = channels[listeningChannelName];
+
+                        var apiListeningChannel = currentApiChannels.find(function(channel) {
+                            return channel['id'] === listeningChannel['id'];
+                        });
+
+                        // Make the song spoken more natural if we get a clean split
+                        // Normal format is 'Artist - Song'
+                        var lastPlaying = apiListeningChannel['lastPlaying'].split(' - ', 2);
+                        var currentPlay = lastPlaying.length === 2 ? lastPlaying[1] + ' by ' + lastPlaying[0] : apiListeningChannel['lastPlaying'];
+
+                        // Find the last playing song
+                        //
+                        // Replace the & or an invalid ssml output will occur.
+                        // There's probably other characters we should be looking for
+                        // but I think this will cover 99% of occurrences
+                        var message = 'This is ' + currentPlay.replace(/&/g, '&amp;');
+                        var cardTitle = "Currently Playing on " + listeningChannel['title'];
+                        console.log("SOMA FM SONG LOOKUP : " + message);
+                        requestHandler.response.cardRenderer(cardTitle, currentPlay);
+                        requestHandler.response.speak(message);
+                        requestHandler.emit(':responseReady');
+                    });
+                }).on('error', function (e) {
+                    console.log("SOMA FM SONG LOOKUP ERROR: ", e);
+                    requestHandler.response.speak('An error was encountered looking up this song.');
                     requestHandler.emit(':responseReady');
                 });
-            }).on('error', function (e) {
-                console.log("SOMA FM SONG LOOKUP ERROR: ", e);
-                requestHandler.response.speak('An error was encountered looking up this song.');
+            } else {
+                console.log("SOMA FM SONG LOOKUP NO CHANNEL");
+                requestHandler.response.speak("Try asking me later when you're listening to a channel.");
                 requestHandler.emit(':responseReady');
-            });
+            }
         },
         popular: function () {
             // Hold on to a reference to 'this' for the https callback
