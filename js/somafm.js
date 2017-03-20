@@ -47,6 +47,10 @@ var somafm = function () {
                     // play behavior, url, token, expected previous token, offset in millis
                     this.response.audioPlayerPlay('REPLACE_ALL', channel['url'], token, null, 0);
                     var message = 'You\'re listening to ' + channel['title'] + ' on Soma FM';
+                    
+                    // Clean special characters from message
+                    message = message.replace(/[^a-zA-Z ]/g, '');
+                    
                     this.response.speak(message);
                     this.emit(':responseReady');
                 }
@@ -97,11 +101,13 @@ var somafm = function () {
 
                         // Find the last playing song
                         //
-                        // Replace the & or an invalid ssml output will occur.
-                        // There's probably other characters we should be looking for
-                        // but I think this will cover 99% of occurrences
-                        var message = 'Currently Playing on ' + listeningChannel['title'] + ',' + currentPlay.replace(/&/g, '&amp;');
-                        var cardTitle = "Currently Playing on " + listeningChannel['title'];
+                        // Replace the & with and or an invalid ssml output will occur.
+                        // Remove all other character per certification
+                        currentPlay = currentPlay.replace(/&/g, 'and').replace(/[^a-zA-Z ]/g, '');
+                        var currentChannel = listeningChannel['title'].replace(/&/g, 'and').replace(/[^a-zA-Z ]/g, '');
+
+                        var message = 'Currently Playing on ' + currentChannel + ' is ' + currentPlay;
+                        var cardTitle = "Currently Playing on " + currentChannel;
                         console.log("SOMA FM SONG LOOKUP : " + message);
                         requestHandler.response.cardRenderer(cardTitle, currentPlay);
                         requestHandler.response.speak(message);
@@ -139,18 +145,11 @@ var somafm = function () {
 
                     // Construct a message with the top three stations
                     var message = 'The most popular stations ranked by current listeners are ';
-                    var popCount = currentChannels.length < 2 ? currentChannels.length : 2;
-                    for (var i = 0; i <= popCount; i++) {
-                        if (i === popCount) {
-                            message += ' and ';
-                        }
-                        message += currentChannels[i]['title'];
-                        if (i === popCount) {
-                            message += '.';
-                        } else {
-                            message += ', ';
-                        }
-                    }
+                    message = message + currentChannels[0]['title'] + ' followed by ';
+                    message = message + currentChannels[1]['title'] + ' and ' + currentChannels[2]['title'];
+
+                    // Clean special characters from message
+                    message = message.replace(/[^a-zA-Z ]/g, '');
                     console.log("SOMA FM POPULAR STATIONS LOOKUP : " + message);
                     requestHandler.response.speak(message);
                     requestHandler.emit(':responseReady');
