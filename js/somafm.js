@@ -161,7 +161,7 @@ var somafm = function () {
             });
         },
         unsupported: function () {
-            this.response.speak('This command is not applicable to Soma FM.');
+            this.response.speak('Sorry, this command does not work with live broadcasts on Soma FM.');
             this.emit(':responseReady');
         },
         welcome: function () {

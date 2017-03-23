@@ -29,6 +29,9 @@ var playModeHandlers = Alexa.CreateStateHandler(constants.states.PLAY_MODE, {
     'AMAZON.CancelIntent' : function () {
         somafm.stop.call(this);
     },
+    'AMAZON.RepeatIntent' : function () {
+        somafm.unsupported.call(this);
+    },
     'AMAZON.ResumeIntent' : function () {
         somafm.play.call(this);
     },
