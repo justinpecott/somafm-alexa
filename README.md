@@ -1,7 +1,7 @@
 # Soma FM for Alexa
 Play [Soma FM](https://somafm.com) channels on Alexa! Over 30 unique channels of listener-supported, commercial-free, underground/alternative radio broadcasting to the world. All music hand-picked by SomaFM's award-winning DJs and music directors. If you enjoy what you're hearing on Soma FM please _**[support them](https://somafm.com/support/)**_!
 
-# Update 4/20/17
+## Update 4/20/17
 This skill has been published by Soma FM. It's free to enable. [Check it out](https://www.amazon.com/SomaFM-com-LLC-SomaFM/dp/B06XGQ78WM/ref=sr_1_2?s=digital-skills&ie=UTF8&qid=1492733907&sr=8-2&keywords=somafm)!
 
 ## Motivation
