@@ -49,7 +49,7 @@ var somafm = function () {
                     var message = 'You\'re listening to ' + channel['title'] + ' on Soma FM';
                     
                     // Clean special characters from message
-                    message = message.replace(/[^a-zA-Z ]/g, '');
+                    message = message.replace(/[^a-zA-Z\.: ]/g, '');
                     
                     this.response.speak(message);
                     this.emit(':responseReady');
@@ -103,7 +103,7 @@ var somafm = function () {
                         //
                         // Replace the & with and or an invalid ssml output will occur.
                         // Remove all other character per certification
-                        currentPlay = currentPlay.replace(/&/g, 'and').replace(/[^a-zA-Z ]/g, '');
+                        currentPlay = currentPlay.replace(/&/g, 'and').replace(/[^a-zA-Z\.: ]/g, '');
                         var currentChannel = listeningChannel['title'].replace(/&/g, 'and').replace(/[^a-zA-Z ]/g, '');
 
                         var message = 'Currently Playing on ' + currentChannel + ' is ' + currentPlay;
@@ -149,16 +149,159 @@ var somafm = function () {
                     message = message + currentChannels[1]['title'] + ' and ' + currentChannels[2]['title'];
 
                     // Clean special characters from message
-                    message = message.replace(/[^a-zA-Z ]/g, '');
+                    message = message.replace(/[^a-zA-Z\.: ]/g, '');
                     console.log("SOMA FM POPULAR STATIONS LOOKUP : " + message);
                     requestHandler.response.speak(message);
                     requestHandler.emit(':responseReady');
                 });
             }).on('error', function (e) {
                 console.log("SOMA FM POPULAR STATIONS LOOKUP ERROR: ", e);
-                requestHandler.response.speak('An error was encountered looking popular stations.');
+                requestHandler.response.speak('An error was encountered looking up popular stations.');
                 requestHandler.emit(':responseReady');
             });
+        },
+        allchannels: function () {
+            // Hold on to a reference to 'this' for the https callback
+            var requestHandler = this;
+
+            https.get(apiUrl, function(res) {
+                var body = '';
+
+                res.on('data', function (chunk) {
+                    body += chunk;
+                });
+
+                res.on('end', function () {
+                    var apiResponse = JSON.parse(body);
+                    var currentChannels = apiResponse['channels'];
+                    // sort by listeners
+                    currentChannels.sort(function(a, b) {
+                        return b['listeners'] - a['listeners'];
+                    });
+
+                    // Construct a message with the top all stations
+                    var message = 'Here are all Soma F.M. stations ranked by current listeners: ';
+                    for (var i = 0; i < currentChannels.length - 1; i++) {
+                        message = message + currentChannels[i]['title'] + '. ';
+                    }
+                    message = message + '. And ' + currentChannels[i]['title'];
+
+                    // Clean special characters from message
+                    message = message.replace(/[^a-zA-Z0-9\.: ]/g, '');
+                    console.log("SOMA FM ALL STATIONS : " + message);
+                    requestHandler.response.speak(message);
+                    requestHandler.emit(':responseReady');
+                });
+            }).on('error', function (e) {
+                console.log("SOMA FM ALL STATIONS LOOKUP ERROR: ", e);
+                requestHandler.response.speak('An error was encountered looking up all stations.');
+                requestHandler.emit(':responseReady');
+            });
+        },
+        allgenres: function () {
+            // Hold on to a reference to 'this' for the https callback
+            var requestHandler = this;
+
+            https.get(apiUrl, function(res) {
+                var body = '';
+
+                res.on('data', function (chunk) {
+                    body += chunk;
+                });
+
+                res.on('end', function () {
+                    var apiResponse = JSON.parse(body);
+                    var currentChannels = apiResponse['channels'];
+                    var genres = new Array();
+                    for (var i = 0; i < currentChannels.length; i++) {
+                        var channelGenres = currentChannels[i]['genre'].split('|');
+                        genres = genres.concat(channelGenres);
+                    }
+                    var uniqueGenres = Array.from(new Set(genres));
+                    uniqueGenres.sort();
+
+                    // Construct a message with the all genres
+                    var message = 'Here are all of the genres available on Soma F.M.: ';
+                    for (var j = 0; j < uniqueGenres.length - 1; j++) {
+                        message = message + uniqueGenres[j] + '. ';
+                    }
+                    message = message + 'And ' + uniqueGenres[j];
+
+                    // Clean special characters from message
+                    message = message.replace(/[^a-zA-Z0-9\.: ]/g, '');
+                    console.log("SOMA FM ALL GENRES : " + message);
+                    requestHandler.response.speak(message);
+                    requestHandler.emit(':responseReady');
+                });
+            }).on('error', function (e) {
+                console.log("SOMA FM ALL GENRES LOOKUP ERROR: ", e);
+                requestHandler.response.speak('An error was encountered looking up all genres.');
+                requestHandler.emit(':responseReady');
+            });
+        },
+        channelsbygenre: function () {
+            // Grab the genre
+            var intent = this.event.request.intent;
+            var genre = '';
+            if (intent && intent.slots && intent.slots.Genre && intent.slots.Genre.value) {
+                genre = intent.slots.Genre.value.toLowerCase();
+                console.log("SOMA FM GENRE: " + genre);
+            }
+
+            // Make sure we have the genre
+            if (genre) {
+                var requestHandler = this;
+                
+                https.get(apiUrl, function(res) {
+                    var body = '';
+    
+                    res.on('data', function (chunk) {
+                        body += chunk;
+                    });
+    
+                    res.on('end', function () {
+                        var apiResponse = JSON.parse(body);
+                        var currentChannels = apiResponse['channels'];
+                        var genreChannels = new Array();
+                        for (var i = 0; i < currentChannels.length; i++) {
+                            if (currentChannels[i]['genre'].indexOf(genre) !== -1){
+                                genreChannels.push(currentChannels[i]['title']);
+                            }
+                        }
+                        genreChannels.sort();
+    
+                        if (genreChannels.length > 1){
+                            // Construct a message with the all genres
+                            var message = 'Here are all of the ' + genre + ' channels available on Soma F.M.: ';
+                            for (var j = 0; j < genreChannels.length - 1; j++) {
+                                message = message + genreChannels[j] + '. ';
+                            }
+                            message = message + 'And ' + genreChannels[j];
+                        } else if (genreChannels.length = 1 && typeof genreChannels[0] !== 'undefined'){
+                            var message = genreChannels[0] + ' is the only ' + genre + ' channel available on Soma F.M.';
+                        } else {
+                            var message = 'There are no ' + genre + ' channels available on Soma F.M.';
+                        }
+    
+                        // Clean special characters from message
+                        message = message.replace(/[^a-zA-Z0-9\.: ]/g, '');
+                        console.log("SOMA FM CHANNELS BY GENRE: " + message);
+                        requestHandler.response.speak(message);
+                        requestHandler.emit(':responseReady');
+                    });
+                }).on('error', function (e) {
+                    console.log("SOMA FM CHANNELS BY GENRE LOOKUP ERROR: ", e);
+                    requestHandler.response.speak('An error was encountered looking up all channels for this genre.');
+                    requestHandler.emit(':responseReady');
+                });
+
+            } else {
+                console.log("SOMA FM NO GENRE NAME IN REQUEST.");
+                var message = 'I did not understand the genre name, please ask me again.';
+                this.response.speak(message).listen(message);
+                this.emit(':responseReady');
+            }
+
         },
         unsupported: function () {
             this.response.speak('Sorry, this command does not work with live broadcasts on Soma FM.');

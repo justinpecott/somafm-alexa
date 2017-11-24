@@ -24,12 +24,12 @@ exports.handler = function(event, context, callback){
     // Ensure the device can play audio
     // event.context.System won't be present while testing from
     // the Developer Portal
-    if (event.context !== undefined &&
-        event.context.System !== undefined &&
-        event.context.System.device.supportedInterfaces.AudioPlayer === undefined) {
-        alexa.emit(':tell', 'Sorry, Soma FM is not supported on this device');
-    }
-    else {
+    // if (event.context !== undefined &&
+    //     event.context.System !== undefined &&
+    //     event.context.System.device.supportedInterfaces.AudioPlayer === undefined) {
+    //     alexa.emit(':tell', 'Sorry, Soma FM is not supported on this device');
+    // }
+    // else {
         alexa.execute();
-    }
+    // }
 };

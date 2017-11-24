@@ -14,3 +14,18 @@ PopularChannels what are the hot channels
 PopularChannels what are the hot stations
 PopularChannels what are the popular channels
 PopularChannels what are the popular stations
+AllChannels to list all stations
+AllChannels list all stations
+AllChannels to list all channels
+AllChannels list all channels
+AllChannels what stations are available
+AllChannels what channels are available
+AllGenres to list all genres
+AllGenres list all genres
+AllGenres what genres are available
+ChannelsByGenre to list all {Genre} stations
+ChannelsByGenre to list {Genre} stations
+ChannelsByGenre what {Genre} stations are there
+ChannelsByGenre to list all {Genre} channels
+ChannelsByGenre to list {Genre} channels
+ChannelsByGenre what {Genre} channels are there

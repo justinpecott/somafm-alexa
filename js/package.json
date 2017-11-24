@@ -17,8 +17,8 @@
   "dependencies": {
     "alexa-sdk": "^1.0.4"
   },
-  "repository" : {
-    "type" : "git",
-    "url" : "https://github.com/justinpecott/somafm-alexa"
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/justinpecott/somafm-alexa"
   }
 }

@@ -3,7 +3,7 @@
 module.exports = Object.freeze({
 
     // AppId from the developer portal.
-    appId : '',
+    appId : 'amzn1.ask.skill.942cff29-9c1b-48e8-9384-88b1576218e2',
 
     //  DynamoDB Table name for saving user state
     dynamoDBTableName : 'AlexaSomaFM',

@@ -20,6 +20,15 @@ var playModeHandlers = Alexa.CreateStateHandler(constants.states.PLAY_MODE, {
     'PopularChannels' : function () {
         somafm.popular.call(this);
     },
+    'AllChannels' : function () {
+        somafm.allchannels.call(this);
+    },
+    'AllGenres' : function () {
+        somafm.allgenres.call(this);
+    },
+    'ChannelsByGenre' : function () {
+        somafm.channelsbygenre.call(this);
+    },
     'AMAZON.PauseIntent' : function () {
         somafm.stop.call(this);
     },

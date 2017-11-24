@@ -16,6 +16,21 @@
       "intent": "PopularChannels"
     },
     {
+      "intent": "AllChannels"
+    },
+    {
+      "intent": "AllGenres"
+    },
+    {
+      "intent": "ChannelsByGenre",
+      "slots": [
+        {
+          "name": "Genre",
+          "type": "SOMA_FM_GENRES"
+        }
+      ]
+    },
+    {
       "intent": "AMAZON.PauseIntent"
     },
     {
